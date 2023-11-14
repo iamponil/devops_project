@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import tn.esprit.devops_project.entities.Supplier;
@@ -20,7 +19,7 @@ class SupplierRepositoryTest {
     @Autowired
     private SupplierRepository supplierRepository;
     @Test
-    public void itShouldFindSupplierByCategory() {
+     void itShouldFindSupplierByCategory() {
         //Arrange
         Supplier supplier = Supplier.builder()
                 .supplierCategory(SupplierCategory.ORDINAIRE)
@@ -31,12 +30,12 @@ class SupplierRepositoryTest {
         //Act
         List<Supplier> byCategory = supplierRepository.findBySupplierCategory(SupplierCategory.ORDINAIRE);
         //Assert
-        Assertions.assertThat(byCategory.size()).isEqualTo(1);
+        Assertions.assertThat(byCategory).hasSize(1);
         Assertions.assertThat(byCategory.get(0)).isEqualTo(savedSupplier);
     }
 
     @Test
-    public void itShouldFindTwoSupplierByCategory() {
+     void itShouldFindTwoSupplierByCategory() {
         //Arrange
         Supplier supplier = Supplier.builder()
                 .supplierCategory(SupplierCategory.CONVENTIONNE)
@@ -55,7 +54,7 @@ class SupplierRepositoryTest {
         //Act
         List<Supplier> byCategory = supplierRepository.findBySupplierCategory(SupplierCategory.CONVENTIONNE);
         //Assert
-        Assertions.assertThat(byCategory.size()).isEqualTo(2);
+        Assertions.assertThat(byCategory).hasSize(2);
         Assertions.assertThat(byCategory.get(1)).isEqualTo(savedSupplier);
         Assertions.assertThat(byCategory.get(0)).isEqualTo(savedSupplier2);
 

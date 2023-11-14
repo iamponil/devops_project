@@ -2,10 +2,8 @@ package tn.esprit.devops_project.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Set;
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -27,11 +25,8 @@ public class Supplier implements Serializable {
 	String label;
 	@Enumerated(EnumType.STRING)
 	SupplierCategory supplierCategory;
-	@OneToMany(mappedBy="supplier")
-	@JsonIgnore
-	Set<Invoice> invoices;
-	@ManyToMany
-	private Set<ActivitySector> activitySectors;
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;
@@ -51,6 +46,6 @@ public class Supplier implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idSupplier, code, label, supplierCategory, invoices, activitySectors);
+		return Objects.hash(idSupplier, code, label, supplierCategory);
 	}
 }

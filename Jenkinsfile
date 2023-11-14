@@ -21,7 +21,26 @@ pipeline{
             steps {
                 sh 'mvn compile  -DskipTests'
             }
+ stage('Collect JaCoCo Coverage') {
+             steps{
+                    jacoco(execPattern: '**/target/jacoco.exec')
+     }
+         }
 
+     stage('JUNIT TEST with JaCoCo') {
+       steps {
+         sh 'mvn test jacoco:report'
+         echo 'Test stage done'
+       }
+     }
+ stage('SonarQube Analysis') {
+
+   steps {
+     withSonarQubeEnv('sonar-scanner') {
+       sh 'mvn sonar:sonar'
+     }
+   }
+ }
         }
     }
 }

@@ -3,11 +3,11 @@ package tn.esprit.devops_project.services;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import tn.esprit.devops_project.dto.SupplierDTO;
 import tn.esprit.devops_project.entities.Supplier;
 import tn.esprit.devops_project.repositories.SupplierRepository;
-import tn.esprit.devops_project.services.Iservices.ISupplierService;
+import tn.esprit.devops_project.services.services_interface.ISupplierService;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,20 +24,30 @@ public class SupplierServiceImpl implements ISupplierService {
 
 
 	@Override
-	public Supplier addSupplier(Supplier supplier) {
+	public Supplier addSupplier(SupplierDTO supplierDTO) {
+		Supplier supplier = convertToSupplier(supplierDTO);
 		return supplierRepository.save(supplier);
 	}
-
+	private Supplier convertToSupplier(SupplierDTO supplierDTO) {
+		// Create a new Supplier and set its properties from the SupplierDTO
+		return Supplier.builder()
+				.code(supplierDTO.getCode())
+				.label(supplierDTO.getLabel())
+				.supplierCategory(supplierDTO.getSupplierCategory())
+				.build();
+	}
 	@Override
 	public Supplier updateSupplier(Supplier supplier) {
 		return  supplierRepository.save(supplier);
 	}
 
 	@Override
-	public void deleteSupplier(Long SupplierId) {
-		supplierRepository.deleteById(SupplierId);
+	public void deleteSupplier(Long supplierId) {
+		supplierRepository.deleteById(supplierId);
 
 	}
+
+
 
 	@Override
 	public Supplier retrieveSupplier(Long supplierId) {

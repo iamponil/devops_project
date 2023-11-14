@@ -7,9 +7,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+import tn.esprit.devops_project.dto.SupplierDTO;
 import tn.esprit.devops_project.entities.*;
 import tn.esprit.devops_project.repositories.SupplierRepository;
-import tn.esprit.devops_project.services.SupplierServiceImpl;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,29 +19,44 @@ import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class SupplierServiceImplementationTest {
+ class SupplierServiceImplementationTest {
     @Mock
     private SupplierRepository supplierRepository;
     @InjectMocks
     private SupplierServiceImpl supplierService;
 
-    @Test
-    public void itShouldAddSupplier() {
-        // Arrange
-        Supplier supplier = Supplier.builder()
-                .idSupplier(1L)
-                .supplierCategory(SupplierCategory.ORDINAIRE)
-                .label("Test Supplier")
-                .code("Supply n 001")
-                .build();
-        when(supplierRepository.save(Mockito.any(Supplier.class))).thenReturn(supplier);
-        //Act
-        Supplier supplier2 = supplierService.addSupplier(supplier);
-        //Assert
-        Assertions.assertThat(supplier2).isEqualTo(supplier);
-    }
-    @Test
-    public void itShouldUpdateSupplier() {
+   @Test
+   void itShouldAddSupplier() {
+      // Arrange
+      SupplierDTO supplierDTO = SupplierDTO.builder()
+              .supplierCategory(SupplierCategory.ORDINAIRE)
+              .label("Test Supplier")
+              .code("Supply n 001")
+              .build();
+
+      // Convert DTO to Entity
+      Supplier supplier = convertToSupplier(supplierDTO);
+
+      when(supplierRepository.save(Mockito.any(Supplier.class))).thenReturn(supplier);
+
+      // Act
+      Supplier actualSupplier = supplierService.addSupplier(supplierDTO);
+
+      // Assert
+      Assertions.assertThat(actualSupplier).isEqualTo(supplier);
+   }
+
+   // Conversion method
+   private Supplier convertToSupplier(SupplierDTO supplierDTO) {
+      return Supplier.builder()
+              .supplierCategory(supplierDTO.getSupplierCategory())
+              .label(supplierDTO.getLabel())
+              .code(supplierDTO.getCode())
+              .build();
+   }
+
+   @Test
+     void itShouldUpdateSupplier() {
         // Arrange
         Supplier supplier = Supplier.builder()
                 .idSupplier(1L)
@@ -57,7 +72,7 @@ public class SupplierServiceImplementationTest {
         assertEquals(supplier, updatedSupplier);
     }
     @Test
-    public void itShouldRetrieveAllSuppliers() {
+     void itShouldRetrieveAllSuppliers() {
         // Arrange
         List<Supplier> expectedSuppliers = Arrays.asList(
                 new Supplier()
@@ -71,7 +86,7 @@ public class SupplierServiceImplementationTest {
         Assertions.assertThat(actualSuppliers).isEqualTo(expectedSuppliers);
     }
     @Test
-    public void itShouldDeleteSupplier() {
+     void itShouldDeleteSupplier() {
         // Arrange
         Long idToDelete = 1L;
 
