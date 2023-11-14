@@ -21,6 +21,7 @@ pipeline{
             steps {
                 sh 'mvn compile  -DskipTests'
             }
+           }
  stage('Collect JaCoCo Coverage') {
              steps{
                     jacoco(execPattern: '**/target/jacoco.exec')
@@ -42,5 +43,4 @@ pipeline{
    }
  }
         }
-    }
 }
