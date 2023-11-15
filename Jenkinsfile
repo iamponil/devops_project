@@ -51,6 +51,11 @@ pipeline{
                     sh 'docker build -t iamponil/devops_project .'
                 }
         }
+ stage('Docker Compose') {
+            steps {
+                sh 'docker-compose up -d'
+            }
+        }
 
         }
 }
