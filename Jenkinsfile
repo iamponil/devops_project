@@ -27,7 +27,7 @@ pipeline{
      }
          }
 
-     stage('JUNIT TEST with JaCoCo') {
+     stage('JUNIT /MOCKITO') {
        steps {
          sh 'mvn test jacoco:report'
          echo 'Test stage done'
@@ -41,5 +41,11 @@ pipeline{
      }
    }
  }
+   stage('Archive Artifacts') {
+            steps {
+                archiveArtifacts(artifacts: 'target/*.jar', allowEmptyArchive: true)
+            }
+        }
+
         }
 }
