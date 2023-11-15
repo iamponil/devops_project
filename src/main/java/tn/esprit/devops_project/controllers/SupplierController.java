@@ -23,12 +23,6 @@ public class SupplierController {
 	public Supplier retrieveSupplier(@PathVariable Long supplierId) {
 		return supplierService.retrieveSupplier(supplierId);
 	}
-
-	@PostMapping("/supplier")
-	public Supplier addSupplier(@RequestBody SupplierDTO supplier) {
-		return supplierService.addSupplier(supplier);
-	}
-
 	@DeleteMapping("/supplier/{supplierId}")
 	public void removeFournisseur(@PathVariable Long supplierId) {
 		supplierService.deleteSupplier(supplierId);
