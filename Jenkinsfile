@@ -46,6 +46,11 @@ pipeline{
         sh 'mvn deploy -DskipTests'
             }
         }
+ stage("Building Docker Image") {
+                steps{
+                    sh 'docker build -t iamponil/devops_project .'
+                }
+        }
 
         }
 }
