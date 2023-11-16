@@ -67,22 +67,23 @@ pipeline{
             }
         }
         }
-         post {
-         always{
-         emailext(
-         subject:" Pipeline Status: ${currentBuild.currentResult}",
-         body: '''<html>
-         <body>
-         <p>Build Status: ${currentBuild.currentResult}</p>
-         <p>build Number: ${currentBuild.number}</p>
-         <p>Check the <a href="${BUILD_URL}">console output</a>.</p>
-         </body>
-         </html>''',
-         to: 'iamponilnemlaghi@gmail.com',
-         from: 'jenkins@example.com',
-         replyTo: 'jenkins@example.com',
-         mimeType: 'text/html'
-          )
-         }
-         }
+        post {
+            always {
+                emailext(
+                    subject: "Pipeline Status: ${currentBuild.currentResult}",
+                    body: """<html>
+                            <body>
+                                <p>Build Status: ${currentBuild.currentResult}</p>
+                                <p>Build Number: ${currentBuild.number}</p>
+                                <p>Check the <a href="${BUILD_URL}">console output</a>.</p>
+                            </body>
+                            </html>""",
+                    to: 'iamponilnemlaghi@gmail.com',
+                    from: 'jenkins@example.com',
+                    replyTo: 'jenkins@example.com',
+                    mimeType: 'text/html'
+                )
+            }
+        }
+
         }
