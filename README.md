@@ -10,7 +10,6 @@
 ![java](https://img.shields.io/badge/java-11-orange)
 ![docker](https://img.shields.io/badge/docker-20.10.6-blue)
 ![docker-compose](https://img.shields.io/badge/docker--compose-1.29.1-blue)
-![swagger](https://img.shields.io/badge/swagger-3.0.0-green)
 ![junit](https://img.shields.io/badge/junit-5.7.1-green)
 ![Jenkins](https://img.shields.io/badge/Jenkins-2.289.1-red)
 ![SonarQube](https://img.shields.io/badge/SonarQube-8.9.0-red)
@@ -48,7 +47,6 @@ The project is deployed on a Jenkins server and the code is analyzed with SonarQ
 - Maven 3.8.1
 - Docker 20.10.6
 - Docker Compose 1.29.1
-- Swagger 3.0.0
 - JUnit 5.7.1
 - Jenkins 2.441.1
 - SonarQube 8.9.0
