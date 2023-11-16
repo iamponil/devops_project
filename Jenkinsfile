@@ -1,6 +1,8 @@
 pipeline{
     agent any
-
+    environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+  }
     stages{
 
         stage('Cloning from GitHub') {
@@ -51,10 +53,14 @@ pipeline{
                     sh 'docker build -t iamponil/devops_project .'
                 }
         }
+        stage('Login') {
+              steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+              }
+            }
           stage("Push to DockerHub") {
                                    steps {
                                        script {
-                                           docker.withRegistry('https://registry.hub.docker.com', 'Docker') {
                                                sh 'docker push iamponil/devops_project'
                                            }
                                        }
