@@ -38,7 +38,7 @@ The project is built with Maven and the application is packaged in a Docker imag
 The project is deployed on a Jenkins server and the code is analyzed with SonarQube.
 
 ## Module By
-- [Ameur Nemlaghi](https://github.com/iamponil/tree/devops_project/master) 
+- [Ameur Nemlaghi](https://github.com/iamponil/devops_project/tree/master) 
 
 
 ## Technologies
