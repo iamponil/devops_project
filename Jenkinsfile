@@ -75,7 +75,7 @@ pipeline{
                             <body>
                                 <p>Build Status: ${currentBuild.currentResult}</p>
                                 <p>Build Number: ${currentBuild.number}</p>
-                                <p>Check the <a href="${JENKINS_URL}/${JOB_NAME}/${BUILD_NUMBER}/console">console output</a>.</p>
+                                <p>Check the <a href="${BUILD_URL}">console output</a>.</p>
                             </body>
                             </html>""",
                     to: 'iamponilnemlaghi@gmail.com',
