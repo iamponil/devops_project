@@ -52,9 +52,14 @@ pipeline{
                 }
         }
           stage("Push to DockerHub") {
-                        steps{
-                            sh 'docker push iamponil/devops_project'
-                        }
+                                   steps {
+                                       script {
+                                           docker.withRegistry('https://registry.hub.docker.com', 'Docker') {
+                                               sh 'docker push iamponil/devops_project'
+                                           }
+                                       }
+                                   }
+
                 }
  stage('Docker Compose') {
             steps {
