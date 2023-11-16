@@ -60,13 +60,11 @@ pipeline{
             }
           stage("Push to DockerHub") {
                                    steps {
-                                       script {
                                                sh 'docker push iamponil/devops_project'
-                                           }
+
                                        }
                                    }
 
-                }
  stage('Docker Compose') {
             steps {
                 sh 'docker-compose up -d'
