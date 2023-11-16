@@ -41,7 +41,7 @@ public class Supplier implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "[ id : "+idSupplier+" | code : "+code+" | label : "+label+" ]";
+		return "[ id : "+idSupplier+" | code : "+code+" | label : "+label+" | category : "+supplierCategory+"]";
 	}
 
 	@Override
