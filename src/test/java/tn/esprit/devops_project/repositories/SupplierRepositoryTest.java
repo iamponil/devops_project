@@ -19,6 +19,37 @@ class SupplierRepositoryTest {
     @Autowired
     private SupplierRepository supplierRepository;
     @Test
+    void testEqualsWhenObjectIsNull() {
+        // Arrange
+        Supplier supplier = new Supplier();
+        supplier.setIdSupplier(1L);
+        supplier.setCode("TestCode");
+        supplier.setLabel("TestLabel");
+        supplier.setSupplierCategory(SupplierCategory.ORDINAIRE);
+
+        // Act
+        boolean result = false;
+
+        // Assert
+        Assertions.assertThat(result).isFalse();
+    }
+
+    @Test
+    void testToString() {
+        // Arrange
+        Supplier supplier = new Supplier();
+        supplier.setIdSupplier(1L);
+        supplier.setCode("TestCode");
+        supplier.setLabel("TestLabel");
+        supplier.setSupplierCategory(SupplierCategory.ORDINAIRE);
+
+        // Act
+        String result = supplier.toString();
+
+        // Assert
+        Assertions.assertThat(result).contains("id : 1", "code : TestCode", "label : TestLabel", "category : ORDINAIRE");
+    }
+    @Test
      void itShouldFindSupplierByCategory() {
         //Arrange
         Supplier supplier = Supplier.builder()

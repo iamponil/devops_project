@@ -53,13 +53,9 @@ pipeline{
                     sh 'docker build -t iamponil/devops_project .'
                 }
         }
-        stage('Login') {
-              steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-              }
-            }
           stage("Push to DockerHub") {
                                    steps {
+                                               sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                                                sh 'docker push iamponil/devops_project'
 
                                        }
@@ -73,7 +69,7 @@ pipeline{
         }
          post {
          always{
-         emailtext(
+         emailext(
          subject:" Pipeline Status: ${currentBuild.currentResult}",
          body: '''<html>
          <body>
