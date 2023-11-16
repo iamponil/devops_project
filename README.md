@@ -37,8 +37,8 @@ The API is documented with Swagger and the code is tested with JUnit.
 The project is built with Maven and the application is packaged in a Docker image. 
 The project is deployed on a Jenkins server and the code is analyzed with SonarQube.
 
-##Module By
-- [Ameur Nemlaghi](https://github.com/iamponil/devops_project/master) 
+## Module By
+- [Ameur Nemlaghi](https://github.com/iamponil/tree/devops_project/master) 
 
 
 ## Technologies
