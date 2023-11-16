@@ -70,23 +70,23 @@ pipeline{
                 sh 'docker-compose up -d'
             }
         }
-                stage("Send Email Notification") {
-                    steps {
-                        script {
-                            currentBuild.result = 'SUCCESS'
-                            emailext(
-                                subject: "Build #${currentBuild.number} Successful: ${currentBuild.fullDisplayName}",
-                                body: """
-                                    The build was successful!
-                                    Build Details: ${BUILD_URL}
-                                    Build Number: ${currentBuild.number}
-                                    Build Status: ${currentBuild.currentResult}
-                                """,
-                                to: 'iamponilnemlahi@gmail.com'
-                            )
-                        }
-                    }
-                }
-
         }
-}
+         post {
+         always{
+         emailtext(
+         subject:" Pipeline Status: ${BUILD_STATUS}",
+         body: '''<html>
+         <body>
+         <p>Build Status: ${BUILD_STATUS}</p>
+         <p>build Number: ${BUILD_NUMBER}</p>
+         <p>Check the <a href="${BUILD_URL}">console output</a>.</p>
+         </body>
+         </html>''',
+         to: 'iamponilnemlaghi@gmail.com',
+         from: 'jenkins@example.com',
+         replyTo: 'jenkins@example.com',
+         mimeType: 'text/html'
+          )
+         }
+         }
+        }
