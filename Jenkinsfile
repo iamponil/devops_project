@@ -41,7 +41,7 @@ pipeline{
      }
    }
  }
-   stage('Archive Artifacts') {
+   stage('Deploy Nexus') {
             steps {
         sh 'mvn deploy -DskipTests'
             }
@@ -51,6 +51,11 @@ pipeline{
                     sh 'docker build -t iamponil/devops_project .'
                 }
         }
+          stage("Push to DockerHub") {
+                        steps{
+                            sh 'docker push iamponil/devops_project'
+                        }
+                }
  stage('Docker Compose') {
             steps {
                 sh 'docker-compose up -d'
