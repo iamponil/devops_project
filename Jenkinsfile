@@ -74,11 +74,11 @@ pipeline{
          post {
          always{
          emailtext(
-         subject:" Pipeline Status: ${BUILD_STATUS}",
+         subject:" Pipeline Status: ${currentBuild.currentResult}",
          body: '''<html>
          <body>
-         <p>Build Status: ${BUILD_STATUS}</p>
-         <p>build Number: ${BUILD_NUMBER}</p>
+         <p>Build Status: ${currentBuild.currentResult}</p>
+         <p>build Number: ${currentBuild.number}</p>
          <p>Check the <a href="${BUILD_URL}">console output</a>.</p>
          </body>
          </html>''',
